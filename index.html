@@ -1,0 +1,140 @@
+<!-- <!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hiệu Ứng Chữ Nhấp Nháy</title>
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Montserrat:900');
+
+  body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #333;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .glowing-text {
+    font-size: 6em;
+    color: white;
+    white-space: nowrap;
+  }
+
+  .glowing-text span {
+    animation: glowing 5s infinite;
+    opacity: 0; /* Bắt đầu với độ mờ là 0 */
+  }
+
+  /* Định nghĩa hiệu ứng nhấp nháy */
+  @keyframes glowing {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+  }
+
+  /* Đặt animation-delay cho mỗi chữ để chúng nhấp nháy lần lượt */
+  .glowing-text span:nth-child(1) { animation-delay: 0s; }
+  .glowing-text span:nth-child(2) { animation-delay: 0.3s; }
+  .glowing-text span:nth-child(3) { animation-delay: 0.6s; }
+  .glowing-text span:nth-child(4) { animation-delay: 0.9s; }
+  .glowing-text span:nth-child(5) { animation-delay: 1.2s; }
+  /* Thêm các chữ tiếp theo với thời gian delay tăng dần */
+</style>
+</head>
+<body>
+
+<div class="glowing-text">
+  <span>L</span><span>ê</span>&nbsp;<span>T</span><span>i</span><span>ế</span><span>n</span>
+</div>
+
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I LOVE FAMILY</title>
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Montserrat:900');
+  @font-face {
+    font-family: 'font_thu_phap';
+    src: url(./Font-Thu-Phap/UVF_FiolexGirlVH.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+  body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #333;
+    font-family: 'font_thu_phap', sans-serif;
+  }
+
+  .text3d {
+    font-size: 16em;
+    color: white;
+  }
+
+  .text3d span {
+    position: relative;
+    display: inline-block;
+    animation: move 5s infinite, glow 1.5s ease-in-out infinite alternate;
+  }
+
+  /* Đặt animation-delay cho hiệu ứng move */
+  .text3d span:nth-child(1) {
+    animation-delay: 0s, 0s;
+    color: #ff0000;
+    text-shadow: 0 0 10px #ff0000;
+  }
+  .text3d span:nth-child(2) {
+    animation-delay: 0.5s, 1.5s; /* 1.5s là thời gian chờ cho hiệu ứng glow */
+    color: #ff7300;
+    text-shadow: 0 0 10px #ff7300;
+  }
+  .text3d span:nth-child(3) {
+    animation-delay: 1s, 3s; /* Tăng thời gian chờ cho hiệu ứng glow */
+    color: #fffb00;
+    text-shadow: 0 0 10px #fffb00;
+  }
+  .text3d span:nth-child(4) {
+    animation-delay: 1.5s, 4.5s;
+    color: #48ff00;
+    text-shadow: 0 0 10px #48ff00;
+  }
+  .text3d span:nth-child(5) {
+    animation-delay: 2s, 6s;
+    color: #00ffd5;
+    text-shadow: 0 0 10px #00ffd5;
+  }
+
+  @keyframes move {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-50px); }
+  }
+
+  @keyframes glow {
+    from {
+      text-shadow: 0 0 20px;
+    }
+    to {
+      text-shadow: 0 0 40px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="text3d">
+  <span>L</span><span>ê</span>&nbsp;<span>T</span><span>i</span><span>ế</span><span>n</span>
+</div>
+
+</body>
+</html>
