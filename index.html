@@ -58,45 +58,11 @@
   .glowing-text span:nth-child(4) { animation-delay: 0.9s, 1.5s, 4.5s; color: #48ff00; text-shadow: 0 0 10px #48ff00; }
   .glowing-text span:nth-child(5) { animation-delay: 1.2s, 2s, 6s; color: #00ffd5; text-shadow: 0 0 10px #00ffd5; }
 
-  .underline {
-    height: 2px;
-    background-color: #00d9ff;
-    width: 0;
-    margin: auto;
-    animation: underline 2s forwards ease infinite;
-  }
-
-  @keyframes underline {
-    0% { width: 0; }
-    50% { width: 50%; }
-    99% { width: 100%; }
-    100%{ width: 0%;}
-  }
-
-
 </style>
 </head>
 <body>
   <div class="glowing-text">
     <span>L</span><span>ê</span>&nbsp;<span>T</span><span>i</span><span>ế</span><span>n</span>
-    <div class="underline"></div>
-    <div class="signature-container">
-      <svg id="signature-path" viewBox="0 0 600 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path id="path" d="
-              M 50 150 
-              Q 100 100, 150 150 
-              Q 200 200, 250 150
-              Q 300 100, 350 150
-              Q 400 200, 450 150
-              Q 475 125, 500 150
-              M 300 150 
-              m -50, 0 
-              a 50,50 0 1,1 100,0 
-              a 50,50 0 1,1 -100,0
-          " stroke="#F028FD" stroke-width="2" fill="transparent"/>
-          <circle id="dot" r="5" fill="#F028FD" />
-      </svg>
-  </div>
   </div>
 </body> 
 </html>
