@@ -1,72 +1,17 @@
-<!-- <!DOCTYPE html>
-<html lang="vi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hiệu Ứng Chữ Nhấp Nháy</title>
-<style>
-  @import url('https://fonts.googleapis.com/css?family=Montserrat:900');
-
-  body, html {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #333;
-    font-family: 'Montserrat', sans-serif;
-  }
-
-  .glowing-text {
-    font-size: 6em;
-    color: white;
-    white-space: nowrap;
-  }
-
-  .glowing-text span {
-    animation: glowing 5s infinite;
-    opacity: 0; /* Bắt đầu với độ mờ là 0 */
-  }
-
-  /* Định nghĩa hiệu ứng nhấp nháy */
-  @keyframes glowing {
-    0%, 100% { opacity: 0; }
-    50% { opacity: 1; }
-  }
-
-  /* Đặt animation-delay cho mỗi chữ để chúng nhấp nháy lần lượt */
-  .glowing-text span:nth-child(1) { animation-delay: 0s; }
-  .glowing-text span:nth-child(2) { animation-delay: 0.3s; }
-  .glowing-text span:nth-child(3) { animation-delay: 0.6s; }
-  .glowing-text span:nth-child(4) { animation-delay: 0.9s; }
-  .glowing-text span:nth-child(5) { animation-delay: 1.2s; }
-  /* Thêm các chữ tiếp theo với thời gian delay tăng dần */
-</style>
-</head>
-<body>
-
-<div class="glowing-text">
-  <span>L</span><span>ê</span>&nbsp;<span>T</span><span>i</span><span>ế</span><span>n</span>
-</div>
-
-</body>
-</html> -->
-
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>I LOVE FAMILY</title>
+<title>Hiệu Ứng Chữ Nhấp Nháy và Di Chuyển</title>
 <style>
-  @import url('https://fonts.googleapis.com/css?family=Montserrat:900');
+  
   @font-face {
     font-family: 'font_thu_phap';
-    src: url(./Font-Thu-Phap/UVF_FiolexGirlVH.ttf) format('truetype');
+    src: url('https://raw.githubusercontent.com/LeTienIT/font_ong_do/main/UVF_FiolexGirlVH.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
-}
+  }
   body, html {
     height: 100%;
     margin: 0;
@@ -77,49 +22,27 @@
     font-family: 'font_thu_phap', sans-serif;
   }
 
-  .text3d {
+  .glowing-text {
     font-size: 16em;
     color: white;
+    white-space: nowrap;
   }
 
-  .text3d span {
-    position: relative;
+  .glowing-text span {
+    animation: glowing 5s infinite, move 5s infinite, glow 1.5s ease-in-out infinite alternate;
+    opacity: 0; 
     display: inline-block;
-    animation: move 5s infinite, glow 1.5s ease-in-out infinite alternate;
   }
 
-  /* Đặt animation-delay cho hiệu ứng move */
-  .text3d span:nth-child(1) {
-    animation-delay: 0s, 0s;
-    color: #ff0000;
-    text-shadow: 0 0 10px #ff0000;
-  }
-  .text3d span:nth-child(2) {
-    animation-delay: 0.5s, 1.5s; /* 1.5s là thời gian chờ cho hiệu ứng glow */
-    color: #ff7300;
-    text-shadow: 0 0 10px #ff7300;
-  }
-  .text3d span:nth-child(3) {
-    animation-delay: 1s, 3s; /* Tăng thời gian chờ cho hiệu ứng glow */
-    color: #fffb00;
-    text-shadow: 0 0 10px #fffb00;
-  }
-  .text3d span:nth-child(4) {
-    animation-delay: 1.5s, 4.5s;
-    color: #48ff00;
-    text-shadow: 0 0 10px #48ff00;
-  }
-  .text3d span:nth-child(5) {
-    animation-delay: 2s, 6s;
-    color: #00ffd5;
-    text-shadow: 0 0 10px #00ffd5;
+  @keyframes glowing {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
   }
 
   @keyframes move {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-50px); }
   }
-
   @keyframes glow {
     from {
       text-shadow: 0 0 20px;
@@ -128,13 +51,52 @@
       text-shadow: 0 0 40px;
     }
   }
+
+  .glowing-text span:nth-child(1) { animation-delay: 0s, 0s, 0s; color: #ff0000; text-shadow: 0 0 10px #ff0000; }
+  .glowing-text span:nth-child(2) { animation-delay: 0.3s, 0.5s, 1.5s; color: #ff7300; text-shadow: 0 0 10px #ff7300; }
+  .glowing-text span:nth-child(3) { animation-delay: 0.6s, 1s, 3s; color: #fffb00; text-shadow: 0 0 10px #fffb00; }
+  .glowing-text span:nth-child(4) { animation-delay: 0.9s, 1.5s, 4.5s; color: #48ff00; text-shadow: 0 0 10px #48ff00; }
+  .glowing-text span:nth-child(5) { animation-delay: 1.2s, 2s, 6s; color: #00ffd5; text-shadow: 0 0 10px #00ffd5; }
+
+  .underline {
+    height: 2px;
+    background-color: #00d9ff;
+    width: 0;
+    margin: auto;
+    animation: underline 2s forwards ease infinite;
+  }
+
+  @keyframes underline {
+    0% { width: 0; }
+    50% { width: 50%; }
+    99% { width: 100%; }
+    100%{ width: 0%;}
+  }
+
+
 </style>
 </head>
 <body>
-
-<div class="text3d">
-  <span>L</span><span>ê</span>&nbsp;<span>T</span><span>i</span><span>ế</span><span>n</span>
-</div>
-
-</body>
+  <div class="glowing-text">
+    <span>L</span><span>ê</span>&nbsp;<span>T</span><span>i</span><span>ế</span><span>n</span>
+    <div class="underline"></div>
+    <div class="signature-container">
+      <svg id="signature-path" viewBox="0 0 600 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path id="path" d="
+              M 50 150 
+              Q 100 100, 150 150 
+              Q 200 200, 250 150
+              Q 300 100, 350 150
+              Q 400 200, 450 150
+              Q 475 125, 500 150
+              M 300 150 
+              m -50, 0 
+              a 50,50 0 1,1 100,0 
+              a 50,50 0 1,1 -100,0
+          " stroke="#F028FD" stroke-width="2" fill="transparent"/>
+          <circle id="dot" r="5" fill="#F028FD" />
+      </svg>
+  </div>
+  </div>
+</body> 
 </html>
