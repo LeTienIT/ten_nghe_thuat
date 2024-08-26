@@ -1,68 +1,210 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hiệu Ứng Chữ Nhấp Nháy và Di Chuyển</title>
-<style>
-  
-  @font-face {
-    font-family: 'font_thu_phap';
-    src: url('https://raw.githubusercontent.com/LeTienIT/font_ong_do/main/UVF_FiolexGirlVH.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-  }
-  body, html {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #333;
-    font-family: 'font_thu_phap', sans-serif;
-  }
-
-  .glowing-text {
-    font-size: 16em;
-    color: white;
-    white-space: nowrap;
-  }
-
-  .glowing-text span {
-    animation: glowing 5s infinite, move 5s infinite, glow 1.5s ease-in-out infinite alternate;
-    opacity: 0; 
-    display: inline-block;
-  }
-
-  @keyframes glowing {
-    0%, 100% { opacity: 0; }
-    50% { opacity: 1; }
-  }
-
-  @keyframes move {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-50px); }
-  }
-  @keyframes glow {
-    from {
-      text-shadow: 0 0 20px;
-    }
-    to {
-      text-shadow: 0 0 40px;
-    }
-  }
-
-  .glowing-text span:nth-child(1) { animation-delay: 0s, 0s, 0s; color: #ff0000; text-shadow: 0 0 10px #ff0000; }
-  .glowing-text span:nth-child(2) { animation-delay: 0.3s, 0.5s, 1.5s; color: #ff7300; text-shadow: 0 0 10px #ff7300; }
-  .glowing-text span:nth-child(3) { animation-delay: 0.6s, 1s, 3s; color: #fffb00; text-shadow: 0 0 10px #fffb00; }
-  .glowing-text span:nth-child(4) { animation-delay: 0.9s, 1.5s, 4.5s; color: #48ff00; text-shadow: 0 0 10px #48ff00; }
-  .glowing-text span:nth-child(5) { animation-delay: 1.2s, 2s, 6s; color: #00ffd5; text-shadow: 0 0 10px #00ffd5; }
-
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Le Tien</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="glowing-text">
-    <span>L</span><span>ê</span>&nbsp;<span>T</span><span>i</span><span>ế</span><span>n</span>
-  </div>
+	<div class="sky"></div>
+	<!-- <canvas id="sky" style="position: absolute;"></canvas> -->
+    <div class="glowing-text">
+        <span>L</span><span>ê</span>&nbsp;<span>T</span><span>i</span><span>ế</span><span>n</span>
+    </div>
+	<div id="load_sign">
+		<svg class="heart" viewBox="-5 -5 278 56" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg">
+			<filter>
+				<feGaussianBlur stdDeviation="1.6"></feGaussianBlur>
+			</filter>
+			<g transform="translate(29.1 -127.42)" id="layer1">
+				<path
+				pathLength="1"
+				d="M-28.73 167.2c26.43 9.21 68.46-9.46 85.45-12.03 18.45-2.78 32.82 4.86 28.75 9.83-3.82 4.66-25.77-21.18-14.81-31.5 9.54-8.98 17.64 10.64 16.42 17.06-1.51-6.2 2.95-26.6 14.74-22.11 11.7 4.46-4.33 49.03-15.44 44.08-6.97-3.1 15.44-16.26 26.1-16 23.03.56 55.6 27.51 126.63 3.36"
+				id="line"></path>
+			</g>
+			<g transform="translate(29.1 -127.42)" id="layer2">
+				<path
+				pathLength="1"
+				d="M-28.73 167.2c26.43 9.21 68.46-9.46 85.45-12.03 18.45-2.78 32.82 4.86 28.75 9.83-3.82 4.66-25.77-21.18-14.81-31.5 9.54-8.98 17.64 10.64 16.42 17.06-1.51-6.2 2.95-26.6 14.74-22.11 11.7 4.46-4.33 49.03-15.44 44.08-6.97-3.1 15.44-16.26 26.1-16 23.03.56 55.6 27.51 126.63 3.36"
+				id="point"
+				filter="url(#blur)"></path>
+			</g>
+		</svg>
+	</div>
+	<div id="hoden">
+		<div class="loader">
+			<div class="blackhole">
+			  <div class="blackhole-circle"></div>
+			  <div class="blackhole-disc"></div>
+			</div>
+		  
+			<div class="curve">
+				<svg viewBox="0 0 500 500">
+					<path id="loading" d="M73.2,148.6c4-6.1,65.5-96.8,178.6-95.6c111.3,1.2,170.8,90.3,175.1,97"></path>
+					<text width="500">
+						<textPath xlink:href="#loading" color="red">
+							LÊ ĐẮC TIẾN
+						</textPath>
+					</text>
+				</svg>
+			</div>
+		  </div>
+		  
+	</div>
+	<script>
+		let sky = document.querySelector('.sky');
+
+		function createDiv(size) {
+		
+			let circle = document.createElement('div');
+			circle.classList.add('circle');
+			
+			let randRange5 = Math.floor(Math.random() * 5) + 1;
+			circle.classList.add(`blink_${randRange5}`);
+			
+			let widthAndHeight = random(size, 'px');
+			circle.style.height = circle.style.width = widthAndHeight;
+			
+			let maxLeft = window.innerWidth - parseInt(widthAndHeight);
+			let maxTop = window.innerHeight - parseInt(widthAndHeight);
+			
+			circle.style.left = random(maxLeft, 'px');
+			circle.style.top = random(maxTop, 'px');
+			
+			sky.appendChild(circle);
+		}
+
+		function paintStars(stars, size) {
+			while (sky.firstChild) {
+				sky.removeChild(sky.firstChild);
+			}
+			for (let i = 0; i < stars; i++) {
+				createDiv(size);
+			}
+		}
+
+		function random(range, unit) {
+			let randNum = Math.floor(Math.random() * range) + 1;
+			return `${randNum}${unit}`;
+		}
+
+		paintStars(128, 9);
+
+		
+	</script>
+	
+	<!-- <script>
+		(function(){
+			var $ = (function(elm){
+				return document.querySelector(elm);
+			}),
+			Stars = function(){
+				var num = (Math.min(window.innerWidth, window.innerHeight) / Math.max(window.innerWidth, window.innerHeight)) * 750, //Math.abs(window.innerWidth - window.innerHeight),
+					makeStar = function(){
+						return {
+							radius: Math.random() * (3 - .5) + .5,
+							pos: {
+								x: Math.random() * c.width,
+								y: Math.random() * c.height
+							},
+							moveTo: {
+								x: Math.random() * c.width,
+								y: Math.random() * c.height
+							},
+							bigger: ~~(Math.random() * 2),
+							speed: Math.random() * (c.width / c.height / 40)
+						}
+					},
+					stars = [],
+					draw = function(star){
+						ctx.fillStyle = "#fff";
+						ctx.beginPath();
+						ctx.arc(star.pos.x, star.pos.y, star.radius, 0, Math.PI * 2);
+						ctx.fill();
+						if(star.bigger){
+							star.radius += .01;
+							if(star.radius >= 3) star.bigger = false;
+						}else{
+							star.radius -= .01;
+							if(star.radius <= .3) star.bigger = true;
+						}
+						if(
+							star.moveTo.x >= star.pos.x - 5 &&
+							star.moveTo.x <= star.pos.x + 5
+						){
+							star.moveTo.x = Math.random() * c.width;
+						}
+						else if(star.moveTo.x < star.pos.x) star.pos.x -= star.speed;
+						else if(star.moveTo.x > star.pos.x) star.pos.x += star.speed;
+						if(
+							star.moveTo.y >= star.pos.y - 5 &&
+							star.moveTo.y <= star.pos.y + 5
+						){
+							star.moveTo.y = Math.random() * c.height;
+						}
+						else if(star.moveTo.y < star.pos.y) star.pos.y -= star.speed;
+						else if(star.moveTo.y > star.pos.y) star.pos.y += star.speed;
+						
+						for(var i = 0; i < stars.length; i++){
+							if(
+								star != stars[i] &&
+								Math.sqrt(
+									(star.pos.x - stars[i].pos.x) * (star.pos.x - stars[i].pos.x) + 
+									(star.pos.y - stars[i].pos.y) * (star.pos.y - stars[i].pos.y)
+								) < 50
+							){
+								ctx.beginPath();
+								ctx.moveTo(star.pos.x, star.pos.y);
+								ctx.lineTo(stars[i].pos.x, stars[i].pos.y);
+								ctx.closePath();
+								ctx.strokeStyle = "#fff";
+								ctx.lineWidth = .025;
+								ctx.stroke();
+							}
+						}
+					}
+				return {
+					init: function(){
+						for(var i = 0; i < num; i++){
+							stars.push(new makeStar());
+						}
+					},
+					move: function(){
+						setInterval(function(){
+							ctx.clearRect(0, 0, c.width, c.height);
+							background();
+							for(var i = 0; i < stars.length; i++){
+								draw(stars[i]);
+							}
+						}, 1);
+					}
+				}
+			}
+			c = document.getElementById('sky'),
+			background = function(){
+				var grdnt = ctx.createLinearGradient(0, 0, 0, c.height);
+				grdnt.addColorStop(0, "#000");
+				grdnt.addColorStop(.5, "#135288");
+				grdnt.addColorStop(1, "#0C5663");
+				ctx.fillStyle = grdnt;
+				ctx.fillRect(0, 0, c.width, c.height);
+			},
+			sky = new Stars();
+			
+			c.width = window.innerWidth;
+			c.height = window.innerHeight;
+		
+			var ctx = c.getContext("2d");
+			
+			sky.init();
+			background();
+			sky.move();
+			window.addEventListener("resize", function(){
+				c.width = window.innerWidth;
+				c.height = window.innerHeight;
+			}, true);
+		}());
+	</script> -->
 </body> 
 </html>
